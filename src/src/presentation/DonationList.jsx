@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import {DonationSummaryRow} from './DonationSummaryRow';
 // import './style.css';
 
 class DonationList extends Component {
@@ -11,9 +12,9 @@ class DonationList extends Component {
     return (
       <div>
         <h1>List of donations</h1>
-        {this.props.donations.map(it => (/*
+        {this.props.donations.map(it => (
           <DonationSummaryRow {...it}/>
-        */ <div>{it}</div>))}
+        ))}
       </div>
     );
   }
