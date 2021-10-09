@@ -19,7 +19,7 @@ const ownUrl = () => window.location.origin
 const tokenRequest = bodyOptions =>
   fetch(`${baseUrl()}/oauth2/token`, {
     method: 'POST',
-    headers: new Headers({
+    headers: new global.Headers({
       'Content-Type': 'application/x-www-form-urlencoded'
     }),
     body: mapToQuery({
@@ -55,13 +55,21 @@ const CognitoClient = ({ apiSubDomain, awsRegion, cognitoClientId }) => {
       return `${baseUrl()}/login?${query}`
     },
 
-    logInByCode: code => (code ? tokenForCode(code) : Promise.reject()),
+    logInByCode: code => (code
+      ? tokenForCode(code)
+      : Promise.reject(
+        new Error('Need code')
+      )),
 
-    refresh: token => (token ? tokenForRefreshToken(token) : Promise.reject()),
+    refresh: token => (token
+      ? tokenForRefreshToken(token)
+      : Promise.reject(
+        new Error('Need token')
+      )),
 
     userInfo: token =>
       fetch(`${baseUrl()}/oauth2/userInfo`, {
-        headers: new Headers({
+        headers: new global.Headers({
           Authorization: `Bearer ${token}`
         })
       }),

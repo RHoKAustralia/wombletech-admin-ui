@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 class DonationSummaryRow extends Component {
   static propTypes = {
@@ -7,10 +7,10 @@ class DonationSummaryRow extends Component {
     donor: PropTypes.string,
     description: PropTypes.string,
     date: PropTypes.string,
-    itemCount: PropTypes.number,
+    itemCount: PropTypes.number
   };
 
-  render() {
+  render () {
     return (
       <div>
         <div>Status: {this.props.status}</div>
@@ -19,8 +19,8 @@ class DonationSummaryRow extends Component {
         <div>Date: {this.props.date}</div>
         <div>Item Count: {this.props.itemCount}</div>
       </div>
-    );
+    )
   }
 }
 
-export { DonationSummaryRow };
+export { DonationSummaryRow }

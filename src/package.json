@@ -5,8 +5,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "standard && react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "standard"
   },
   "dependencies": {
     "amazon-cognito-identity-js": "^5.2.0",
@@ -19,7 +20,8 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10"
+    "@testing-library/user-event": "^12.1.10",
+    "standard": "^16.0.4"
   },
   "eslintConfig": {
     "extends": [
@@ -38,5 +40,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "standard": {
+    "globals": ["test", "expect"],
+    "parser": "babel-eslint"
   }
 }

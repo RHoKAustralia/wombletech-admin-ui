@@ -64,8 +64,8 @@ const Session = ({
       cache.userInfo.email
         ? Promise.resolve(cache.userInfo)
         : getToken()
-            .then(token => userInfo(token))
-            .then(onReceivedUserInfo)
+          .then(token => userInfo(token))
+          .then(onReceivedUserInfo)
   }
 }
 
