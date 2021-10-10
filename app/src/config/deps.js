@@ -7,7 +7,7 @@ import {
   LogOut
 } from '../presentation/authUseCases'
 import { Donations, Session } from '../domain'
-import { AuthConnector, CognitoClient } from '../data'
+import { AuthConnector, CognitoClient, WombleClient } from '../data'
 
 const log = {
   debug: process.env.NODE_ENV === 'development' ? console.log : () => {},
@@ -30,8 +30,6 @@ const authConnector = AuthConnector({
   logoutUrl: cognitoClient.logoutUrl
 })
 
-// Domain
-
 const session = Session({
   loginUrl: authConnector.loginUrl,
   logInByCode: authConnector.logInByCode,
@@ -41,7 +39,15 @@ const session = Session({
   log
 })
 
-const donations = Donations()
+// WombleTech API
+
+const wombleClient = WombleClient({
+  getToken: session.getToken
+})
+
+// WombleTech Domain
+
+const donations = Donations(wombleClient)
 
 // Use Cases
 
