@@ -6,7 +6,7 @@ const cache = {
     expireAt: undefined
   },
   userInfo: {
-    email: process.env.NODE_ENV === 'development' ? 'dev-mode' : undefined
+    email: process.env.NODE_ENV === 'developmentx' ? 'dev-mode' : undefined
   }
 }
 
@@ -50,7 +50,7 @@ const Session = ({
 
   return {
     hasSession: () =>
-      process.env.NODE_ENV === 'development' ? true : Boolean(cache.tokens.id),
+      process.env.NODE_ENV === 'developmentx' ? true : Boolean(cache.tokens.id),
 
     getToken,
     tokenStatus,
@@ -58,7 +58,7 @@ const Session = ({
     loginUrl,
     logoutUrl,
 
-    logInByCode: code => logInByCode(code).then(onReceivedTokens),
+    logInByCode: (code, state) => logInByCode(code, state).then(onReceivedTokens),
 
     userInfo: () =>
       cache.userInfo.email

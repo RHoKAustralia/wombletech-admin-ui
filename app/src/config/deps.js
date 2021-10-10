@@ -15,11 +15,11 @@ const log = {
 }
 
 // Auth
-
 const cognitoClient = CognitoClient({
   apiSubDomain: 'wombletech-rhok',
   awsRegion: 'ap-southeast-2',
-  cognitoClientId: '4ogoetfv2qukfsvmpb471s4s56'
+  cognitoClientId: '1omq88dvrudfhtm0f8nt7et16d',
+  scope: 'admin-ui/admin openid'
 })
 
 const authConnector = AuthConnector({

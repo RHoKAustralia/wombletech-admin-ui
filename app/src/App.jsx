@@ -5,6 +5,7 @@ import { DonationList, Header } from './presentation'
 import './index.css'
 
 const codeFromUrl = () => new URL(window.location).searchParams.get('code')
+const stateFromUrl = () => new URL(window.location).searchParams.get('state')
 
 const removeCodeFromUrl = () => {
   window.history.replaceState({}, window.title, window.location.origin)
@@ -13,8 +14,9 @@ const removeCodeFromUrl = () => {
 const tryLogin = async () => {
   const code = codeFromUrl()
   if (code) {
+    const state = stateFromUrl()
     try {
-      await useCases.auth.logInByCode(code)
+      await useCases.auth.logInByCode(code, state)
       removeCodeFromUrl()
     } catch (e) {}
   }

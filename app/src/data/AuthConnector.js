@@ -27,8 +27,8 @@ const AuthConnector = ({
 }) => ({
   loginUrl: () => loginUrl(),
 
-  logInByCode: code =>
-    logInByCode(code)
+  logInByCode: (code, state) =>
+    logInByCode(code, state)
       .then(okResponseJson)
       .then(convertTokenResponse),
 

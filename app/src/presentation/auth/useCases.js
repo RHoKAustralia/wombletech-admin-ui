@@ -6,8 +6,8 @@ const displayable = ({ expiresAt, willRefresh }) => ({
 const GetSessionInfo = tokenStatus => () => displayable(tokenStatus())
 const GetUserInfo = userInfo => () => userInfo()
 
-const LogIn = loginUrl => () => { window.location = loginUrl() }
-const LogInByCode = logInByCode => code => logInByCode(code)
+const LogIn = loginUrl => async () => { window.location = await loginUrl() }
+const LogInByCode = logInByCode => (code, state) => logInByCode(code, state)
 const LogOut = logoutUrl => () => { window.location = logoutUrl() }
 const LoggedIn = hasSession => () => hasSession()
 
