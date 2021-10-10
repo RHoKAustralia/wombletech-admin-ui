@@ -1,14 +1,13 @@
-import './App.css'
+import { useCases } from 'config/deps'
+import { DonationList, Header } from './presentation'
 
-import { useCases } from './config/deps'
-import { DonationList } from './presentation'
+import './index.css'
 
-function App () {
-  return (
-    <div className='App'>
-      <DonationList donations={useCases.donationList()} />
-    </div>
-  )
-}
+const App = () => (
+  <div className='App'>
+    <Header />
+    {useCases.auth.loggedIn() ? <DonationList /> : null}
+  </div>
+)
 
 export default App

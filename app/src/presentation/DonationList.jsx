@@ -1,23 +1,15 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import { useCases } from 'config/deps'
 import { DonationSummaryRow } from './DonationSummaryRow'
+
 // import './style.css';
 
-class DonationList extends Component {
-  static propTypes = {
-    donations: PropTypes.array
-  };
-
-  render () {
-    return (
-      <div>
-        <h1>List of donations</h1>
-        {this.props.donations.map(it => (
-          <DonationSummaryRow key={it.id} {...it} />
-        ))}
-      </div>
-    )
-  }
-}
+const DonationList = () => (
+  <div>
+    <h1>List of donations</h1>
+    {useCases.donationList().map(it => (
+      <DonationSummaryRow key={it.id} {...it} />
+    ))}
+  </div>
+)
 
 export { DonationList }

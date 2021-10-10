@@ -1,0 +1,9 @@
+.infoLogout {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.infoLogout > span {
+  padding: 0.5rem;
+}

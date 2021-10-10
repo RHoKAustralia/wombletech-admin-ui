@@ -5,7 +5,7 @@ import {
   GetSessionInfo,
   GetUserInfo,
   LogOut
-} from '../presentation/authUseCases'
+} from '../presentation/auth/useCases'
 import { Donations, Session } from '../domain'
 import { AuthConnector, CognitoClient, WombleClient } from '../data'
 
