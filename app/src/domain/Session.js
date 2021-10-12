@@ -1,3 +1,5 @@
+import { generateNonce, base64URLEncode, sha256 } from '../lib'
+
 const cache = {
   tokens: {
     id: undefined,
@@ -55,10 +57,22 @@ const Session = ({
     getToken,
     tokenStatus,
 
-    loginUrl,
+    loginUrl: async () => {
+      const state = await generateNonce()
+      const codeVerifier = await generateNonce()
+      sessionStorage.setItem(`cognito-codeVerifier-${state}`, codeVerifier)
+      const codeChallenge = base64URLEncode(await sha256(codeVerifier))
+
+      return loginUrl(state, codeChallenge)
+    },
     logoutUrl,
 
-    logInByCode: (code, state) => logInByCode(code, state).then(onReceivedTokens),
+    logInByCode: (code, state) => {
+      const codeVerifier = sessionStorage.getItem(`cognito-codeVerifier-${state}`)
+      sessionStorage.removeItem(`cognito-codeVerifier-${state}`)
+
+      return logInByCode(code, codeVerifier).then(onReceivedTokens)
+    },
 
     userInfo: () =>
       cache.userInfo.email

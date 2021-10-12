@@ -7,24 +7,6 @@ const config = {
   scope: undefined
 }
 
-const sha256 = async (str) => {
-  return await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str))
-}
-
-const generateNonce = async () => {
-  const hash = await sha256(crypto.getRandomValues(new Uint32Array(4)).toString())
-  // https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest
-  const hashArray = Array.from(new Uint8Array(hash))
-  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('')
-}
-
-const base64URLEncode = (string) => {
-  return btoa(String.fromCharCode.apply(null, new Uint8Array(string)))
-    .replace(/\+/g, '-')
-    .replace(/\//g, '_')
-    .replace(/=+$/, '')
-}
-
 const baseUrl = () =>
   `https://${config.subdomain}.auth.${config.region}.amazoncognito.com`
 
@@ -47,10 +29,7 @@ const tokenRequest = bodyOptions =>
     })
   })
 
-const tokenForCode = (code, state) => {
-  const codeVerifier = sessionStorage.getItem(`cognito-codeVerifier-${state}`)
-  sessionStorage.removeItem(`cognito-codeVerifier-${state}`)
-
+const tokenForCode = (code, codeVerifier) => {
   return tokenRequest({
     redirect_uri: ownUrl(),
     grant_type: 'authorization_code',
@@ -72,13 +51,7 @@ const CognitoClient = ({ apiSubDomain, awsRegion, cognitoClientId, scope }) => {
   config.scope = scope
 
   return {
-    loginUrl: async () => {
-      const state = await generateNonce()
-      const codeVerifier = await generateNonce()
-      sessionStorage.setItem(`cognito-codeVerifier-${state}`, codeVerifier)
-
-      const codeChallenge = base64URLEncode(await sha256(codeVerifier))
-
+    loginUrl: (state, codeChallenge) => {
       const query = mapToQuery({
         response_type: 'code',
         client_id: config.clientId,
@@ -91,8 +64,8 @@ const CognitoClient = ({ apiSubDomain, awsRegion, cognitoClientId, scope }) => {
       return `${baseUrl()}/login?${query}`
     },
 
-    logInByCode: (code, state) => (code
-      ? tokenForCode(code, state)
+    logInByCode: (code, codeVerifier) => (code
+      ? tokenForCode(code, codeVerifier)
       : Promise.reject(
         new Error('Need code')
       )
