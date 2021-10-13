@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useCases } from 'config/deps'
 import { DonationList, Header } from './presentation'
 
@@ -11,24 +11,26 @@ const removeCodeFromUrl = () => {
   window.history.replaceState({}, window.title, window.location.origin)
 }
 
-const tryLogin = async () => {
+const tryLogin = async (setLoggedIn) => {
   const code = codeFromUrl()
   if (code) {
     const state = stateFromUrl()
     try {
       await useCases.auth.logInByCode(code, state)
       removeCodeFromUrl()
+      setLoggedIn(useCases.auth.loggedIn())
     } catch (e) {}
   }
 }
 
 const App = () => {
-  useEffect(tryLogin)
+  const [isLoggedIn, setLoggedIn] = useState(false);
+  useEffect(() => tryLogin(setLoggedIn), [])
 
   return (
     <div className='App'>
       <Header />
-      {useCases.auth.loggedIn() ? <DonationList /> : null}
+      {isLoggedIn && <DonationList />}
     </div>
   )
 }
