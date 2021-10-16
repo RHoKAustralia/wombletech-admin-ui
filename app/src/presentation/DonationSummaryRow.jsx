@@ -2,20 +2,23 @@ import PropTypes from 'prop-types'
 
 const DonationSummaryRow = props => (
   <div>
-    <div>Status: {props.status}</div>
-    <div>Donor: {props.donor}</div>
+    <div>Donor: {props.name}</div>
+    <div>Email: {props.email}</div>
     <div>Description: {props.description}</div>
-    <div>Date: {props.date}</div>
-    <div>Item Count: {props.itemCount}</div>
+    <div>Date: {props.submitDate}</div>
   </div>
 )
 
 DonationSummaryRow.propTypes = {
-  status: PropTypes.string,
-  donor: PropTypes.string,
+  active: PropTypes.bool,
+  name: PropTypes.string,
+  email: PropTypes.string,
+  phoneNumber: PropTypes.string,
+  suburb: PropTypes.string,
+  region: PropTypes.string,
+  donationType: PropTypes.string,
   description: PropTypes.string,
-  date: PropTypes.string,
-  itemCount: PropTypes.number
+  submitDate: PropTypes.string,
 }
 
 export { DonationSummaryRow }

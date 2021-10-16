@@ -42,7 +42,9 @@ const session = Session({
 // WombleTech API
 
 const wombleClient = WombleClient({
-  getToken: session.getToken
+  getToken: session.getToken,
+  apiHost: '0bs98g9c51.execute-api.ap-southeast-2.amazonaws.com',
+  apiBasePath: 'test'
 })
 
 // WombleTech Domain

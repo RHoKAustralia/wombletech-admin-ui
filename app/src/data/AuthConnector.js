@@ -1,3 +1,5 @@
+import { okResponseJson } from "./utility"
+
 /* eslint-disable camelcase */
 const convertTokenResponse = ({
   id_token,
@@ -13,10 +15,6 @@ const convertTokenResponse = ({
 })
 
 const convertUserInfoResponse = ({ email }) => ({ email })
-
-const okResponseJsonElse = (defaultReturn = {}) => response =>
-  response.ok ? response.json() : defaultReturn
-const okResponseJson = okResponseJsonElse()
 
 const AuthConnector = ({
   loginUrl,
