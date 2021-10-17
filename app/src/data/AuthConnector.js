@@ -1,4 +1,4 @@
-import { okResponseJson } from "./utility"
+import { okResponseJson } from './utility'
 
 /* eslint-disable camelcase */
 const convertTokenResponse = ({

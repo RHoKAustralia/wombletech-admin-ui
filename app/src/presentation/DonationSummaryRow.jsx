@@ -18,7 +18,7 @@ DonationSummaryRow.propTypes = {
   region: PropTypes.string,
   donationType: PropTypes.string,
   description: PropTypes.string,
-  submitDate: PropTypes.string,
+  submitDate: PropTypes.string
 }
 
 export { DonationSummaryRow }
