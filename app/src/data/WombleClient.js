@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch'
-import { okResponseJson } from "./utility"
+import { okResponseJson } from './utility'
 
 const config = {
   apiHost: undefined,
@@ -12,8 +12,8 @@ const listDonations = (token) => (
   fetch(`${apiUrl()}/donation`, {
     method: 'GET',
     headers: new global.Headers({
-      'Authorization': token,
-      'Content-Type': 'application/json'
+      Authorization: token,
+      Accept: 'application/json'
     })
   })
 )
@@ -22,13 +22,24 @@ const getDonation = (token) => (id) => (
   fetch(`${apiUrl()}/donation/${id}`, {
     method: 'GET',
     headers: new global.Headers({
-      'Authorization': token,
-      'Content-Type': 'application/json'
+      Authorization: token,
+      Accept: 'application/json'
     })
   })
 )
 
-function WombleClient({ getToken, apiHost, apiBasePath }) {
+const postDonation = (submission) => (
+  fetch(`${apiUrl()}/donation`, {
+    method: 'POST',
+    headers: new global.Headers({
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    }),
+    body: JSON.stringify(submission)
+  })
+)
+
+function WombleClient ({ getToken, apiHost, apiBasePath }) {
   config.apiHost = apiHost
   config.apiBasePath = apiBasePath
   return {
@@ -41,8 +52,12 @@ function WombleClient({ getToken, apiHost, apiBasePath }) {
       return getToken()
         .then(getDonation(id))
         .then(okResponseJson)
+    },
+    postDonation: (submission) => {
+      return postDonation(submission)
+        .then(okResponseJson)
     }
-  };
+  }
 }
 
 export { WombleClient }

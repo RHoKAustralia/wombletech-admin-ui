@@ -64,7 +64,8 @@ const useCases = {
   },
 
   donationList: () => donations.list(),
-  donationDetails: id => donations.details(id)
+  donationDetails: id => donations.details(id),
+  donationSubmit: submission => donations.submit(submission)
 }
 
 export { log, useCases }
