@@ -1,6 +1,6 @@
 import { Form, Input, Select, Button, message } from 'antd'
 import { useState } from 'react'
-import { useCases } from 'config/deps'
+import { useCases } from '../config/deps'
 import './styles.css'
 
 const DonationSubmit = () => {

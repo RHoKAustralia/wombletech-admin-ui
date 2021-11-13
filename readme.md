@@ -9,15 +9,15 @@ Regular Node stuff. Everything's in `app/`.
 ```bash
 cd app      # just to get there
 nvm use     # sync up on node/npm versions
-npm install # install dependencies
-npm start   # build and serve the app locally, with hot-reloading
+yarn install # install dependencies
+yarn start   # build and serve the app locally, with hot-reloading
 ```
 
 Linting and testing are also configured.
 
 ```bash
 cd app
-npm test              # check lint & test
+yarn test              # check lint & test
 npm run lint -- --fix # automatically fix lint issues (where possible)
 ```
 

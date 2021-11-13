@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useCases } from 'config/deps'
+import { useCases } from '../../config/deps'
 
 import './logoutButton.css'
 

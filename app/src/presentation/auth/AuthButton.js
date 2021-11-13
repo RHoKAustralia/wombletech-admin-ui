@@ -1,4 +1,4 @@
-import { useCases } from 'config/deps'
+import { useCases } from '../../config/deps'
 import { LoginButton } from './LoginButton'
 import { LogoutButton } from './LogoutButton'
 

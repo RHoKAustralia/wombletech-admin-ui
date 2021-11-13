@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useCases } from 'config/deps'
+import { useCases } from '../config/deps'
 import { DonationSummaryRow } from './DonationSummaryRow'
 
 // import './style.css';

@@ -1,55 +1,13 @@
 body {
   margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
-  background-color: #282c34;
-  height: 100vh;
-  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-button,
-input[type='button'],
-input[type='submit'] {
-  display: inline-block;
-  border: none;
-  padding: 0 1rem;
-  margin: 0;
-  text-decoration: none;
-  background: #08a;
-  color: #fff;
-  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
-  font-size: 1rem;
-  cursor: pointer;
-  text-align: center;
-  transition: background 100ms ease-in-out, transform 70ms ease;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-}
-
-button:hover,
-button:focus,
-input[type='button']:hover,
-input[type='button']:focus,
-input[type='submit']:hover,
-input[type='submit']:focus {
-  background: #4ac;
-}
-
-button:focus,
-input[type='button']:focus,
-input[type='submit']:focus {
-  outline: 0.125rem dotted #fff;
-  outline-offset: -0.2rem;
-}
-
-button:active,
-input[type='button']:active,
-input[type='submit']:active {
-  transform: scale(0.99);
-}
-
-button:disabled,
-input[type='button']:disabled,
-input[type='submit']:disabled {
-  background-color: #777;
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 }
