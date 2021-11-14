@@ -1,13 +1,14 @@
 import { Form, Input, Select, Button, message } from 'antd'
 import { useState } from 'react'
 import { useCases } from '../config/deps'
+import { Donation } from '../data'
 import './styles.css'
 
 const DonationSubmit = () => {
   const [form] = Form.useForm()
   const [loading, setLoading] = useState(false)
 
-  const onFinish = async (values) => {
+  const onFinish = async (values: Donation) => {
     try {
       setLoading(true)
       const response = await useCases.donationSubmit({ ...values })

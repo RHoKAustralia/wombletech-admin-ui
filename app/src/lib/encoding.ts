@@ -1,10 +1,10 @@
 
-export const sha256 = async (str) => {
+export const sha256 = async (str: string) => {
   return await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str))
 }
 
-export const base64URLEncode = (string) => {
-  return btoa(String.fromCharCode.apply(null, new Uint8Array(string)))
+export const base64URLEncode = (str: any) => {
+  return Buffer.from(str).toString('base64')
     .replace(/\+/g, '-')
     .replace(/\//g, '_')
     .replace(/=+$/, '')

@@ -25,8 +25,7 @@ const tryLogin = async (setLoggedIn: any) => {
 const App = () => {
   const [isLoggedIn, setLoggedIn] = useState(false);
   useEffect(() => {
-    const login = async () => await tryLogin(setLoggedIn);
-    login();
+    tryLogin(setLoggedIn);
   }, [])
 
   return (
